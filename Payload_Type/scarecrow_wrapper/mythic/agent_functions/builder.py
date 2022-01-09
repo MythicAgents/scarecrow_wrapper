@@ -91,7 +91,7 @@ class ScarecrowWrapper(PayloadType):
             command += "-I {} -Loader {}{}{}{}{}{}".format(
                 working_path,
                 self.get_parameter("loader"),
-                " -etw" if self.get_parameter("etw") == "true" else "",
+                " -noetw" if self.get_parameter("etw") == "false" else "",
                 " -console" if self.get_parameter("console") == "true" else "",
                 " -injection {}".format(self.get_parameter("injection")) if self.get_parameter("injection") != "" else "",
                 " -domain {}".format(self.get_parameter("domain")) if self.get_parameter("domain") != "" else "",
