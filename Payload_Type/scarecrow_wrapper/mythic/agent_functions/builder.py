@@ -77,7 +77,7 @@ class ScarecrowWrapper(PayloadType):
             # shutil to copy payload files over
             copy_tree(self.agent_code_path, agent_build_path)
             working_path = "{}/original.exe".format(agent_build_path)
-            output_path ="{}/output.exe".format(agent_build_path)
+            output_path ="{}/OneNote.exe".format(agent_build_path)
 
             with open(str(working_path), "wb") as f:
                 f.write(base64.b64decode(self.wrapped_payload))
