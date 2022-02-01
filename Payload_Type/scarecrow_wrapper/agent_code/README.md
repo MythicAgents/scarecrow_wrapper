@@ -1,1 +1,1 @@
-ScareCrow version 2.3
+ScareCrow version 3.0.1
