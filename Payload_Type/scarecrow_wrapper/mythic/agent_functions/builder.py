@@ -16,53 +16,53 @@ class ScarecrowWrapper(PayloadType):
     wrapped_payloads = []
     note = ""
     supports_dynamic_loading = False
-    build_parameters = {
-        "loader": BuildParameter(
+    build_parameters = [
+        BuildParameter(
             name="loader",
             parameter_type=BuildParameterType.ChooseOne,
             description="Loader - Sets the type of process that will sideload the malicious payload. Note: Binary, Control, and DLL loaders require shellcode as input while Excel, Msiexec, and Wscript loaders require a PE file.",
             choices=["control", "binary", "dll"],
         ),
-        "etw": BuildParameter(
+        BuildParameter(
             name="etw",
             parameter_type=BuildParameterType.ChooseOne,
             description="ETW - Enables ETW patching to prevent ETW events from being generated.",
             choices=["true", "false"],
         ),
-        "console": BuildParameter(
+        BuildParameter(
             name="console",
             parameter_type=BuildParameterType.ChooseOne,
             description="Console (Only for Binary Payloads) - Generates verbose console information when the payload is executed. This will disable the hidden window feature.",
             choices=["true", "false"],
         ),
-        "sandbox": BuildParameter(
+        BuildParameter(
             name="sandbox",
             parameter_type=BuildParameterType.ChooseOne,
             description="Sandbox - Enables sandbox evasion using IsDomainedJoined calls.",
             choices=["true", "false"],
         ),
-        "unmodified": BuildParameter(
+        BuildParameter(
             name="unmodified",
             parameter_type=BuildParameterType.ChooseOne,
             description="Unmodified - (Only for DLL Payloads) When enabled will generate a DLL loader that WILL NOT removing the EDR hooks in system DLLs and only use custom syscalls.",
             choices=["true", "false"],
             default_value="false",
         ),
-        "injection": BuildParameter(
+        BuildParameter(
             name="injection",
             parameter_type=BuildParameterType.String,
             required=False,
             description="Injection - Enables Process Injection Mode and specifies the path to the process to create/inject into (use \ for the path).",
             default_value="",
         ),
-        "domain": BuildParameter(
+        BuildParameter(
             name="domain",
             required=True,
             parameter_type=BuildParameterType.String,
             description="Domain - The domain name to use for creating a fake code signing cert.",
             default_value="www.acme.com",
         ),
-    }
+    ]
     c2_profiles = []
 
     async def build(self) -> BuildResponse:
