@@ -1,5 +1,5 @@
 # ScareCrow Wrapper
-A wrapper payload for [Mythic](https://github.com/its-a-feature/Mythic) that wraps any agent shellcode with the [ScareCrow](https://github.com/optiv/ScareCrow) loader. This wrapper currently supports CPL, EXE, and DLL payload types from ScareCrow.
+A wrapper payload for [Mythic](https://github.com/its-a-feature/Mythic) that wraps any agent shellcode with the [ScareCrow](https://github.com/Tylous/ScareCrow) loader. This wrapper currently supports CPL, EXE, and DLL payload types from ScareCrow.
 
 ## Usage
 In Mythic, go to Create Components > Create Wrapper and then select "scarecrow_wrapper". Select/input the desired configuration options, and then select the payload you would like to wrap. Once the generation is complete, go to Operational Views > Created Payloads to download the output file. The intended filename can be seen in Payload Actions > View Build Message.
