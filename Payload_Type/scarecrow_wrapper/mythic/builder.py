@@ -81,7 +81,7 @@ class ScarecrowWrapper(PayloadType):
             output_path = "{}/OneNote.exe".format(agent_build_path)
 
             with open(str(working_path), "wb") as f:
-                f.write(base64.b64decode(self.wrapped_payload))
+                f.write(self.wrapped_payload)
             with open(str(working_path), "rb") as f:
                 header = f.read(2)
                 if header == b"\x4d\x5a":  # if PE file
