@@ -24,6 +24,12 @@ class ScarecrowWrapper(PayloadType):
             choices=["control", "binary", "dll"],
         ),
         BuildParameter(
+            name="execute",
+            parameter_type=BuildParameterType.ChooseOne,
+            description="",
+            choices=["RtlCopy", "ProcessInjection", "NtQueueApcThreadEx", "VirtualAlloc"],
+        ),
+        BuildParameter(
             name="etw",
             parameter_type=BuildParameterType.Boolean,
             default_value=True,
@@ -61,6 +67,12 @@ class ScarecrowWrapper(PayloadType):
             description="Domain - The domain name to use for creating a fake code signing cert.",
             default_value="www.acme.com",
         ),
+        BuildParameter(
+            name="export",
+            required=False,
+            parameter_type=BuildParameterType.String,
+            description="",
+        ),
     ]
     agent_icon_path = Path(".") / "mythic" / "scarecrow.svg"
     agent_code_path = Path(".") / "agent_code"
@@ -90,13 +102,17 @@ class ScarecrowWrapper(PayloadType):
 
             command = "cd {}/ScareCrow/; go build; chmod +x ScareCrow; ./ScareCrow ".format(agent_build_path,
                                                                                             agent_build_path)
-            command += "-I {} -Loader {}{}{}{}{}{}".format(
+            command += "-I {} -Loader {}{}{}{}{}{}{}{}".format(
                 working_path,
                 self.get_parameter("loader"),
                 " -noetw" if not self.get_parameter("etw") else "",
                 " -console" if self.get_parameter("console") else "",
                 " -injection {}".format(self.get_parameter("injection")) if self.get_parameter(
                     "injection") != "" else "",
+                " -execute {}".format(self.get_parameter("execute")) if self.get_parameter(
+                    "execute") != "" else "",
+                " -export {}".format(self.get_parameter("export")) if self.get_parameter(
+                    "export") != "" else "",
                 " -domain {}".format(self.get_parameter("domain")) if self.get_parameter("domain") != "" else "",
                 " -sandbox" if self.get_parameter("sandbox") else "",
                 " -unmodified" if self.get_parameter("unmodified") else "",
