@@ -109,7 +109,7 @@ class ScarecrowWrapper(PayloadType):
                 " -console" if self.get_parameter("console") else "",
                 " -injection {}".format(self.get_parameter("injection")) if self.get_parameter(
                     "injection") != "" else "",
-                " -execute {}".format(self.get_parameter("execute")) if self.get_parameter(
+                " -Exec {}".format(self.get_parameter("execute")) if self.get_parameter(
                     "execute") != "" else "",
                 " -export {}".format(self.get_parameter("export")) if self.get_parameter(
                     "export") != "" else "",
