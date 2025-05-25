@@ -26,7 +26,7 @@ class ScarecrowWrapper(PayloadType):
         BuildParameter(
             name="execute",
             parameter_type=BuildParameterType.ChooseOne,
-            description="",
+            description="-Exec - Set the template to execute the shellcode ('RtlCopy', 'ProcessInjection', 'NtQueueApcThreadEx', 'VirtualAlloc')",
             choices=["RtlCopy", "ProcessInjection", "NtQueueApcThreadEx", "VirtualAlloc"],
         ),
         BuildParameter(
@@ -71,7 +71,7 @@ class ScarecrowWrapper(PayloadType):
             name="export",
             required=False,
             parameter_type=BuildParameterType.String,
-            description="",
+            description="-export - Specify an Export function for a loader to have. (DLL Loaders Only)",
         ),
     ]
     agent_icon_path = Path(".") / "mythic" / "scarecrow.svg"
